@@ -1,11 +1,12 @@
-//Arduino Controlled Kambrook Remote Power Switch by: Mike Thompson August 2013, based on the pioneering efforts of Nevoz
-//posted here: http://forum.arduino.cc/index.php?PHPSESSID=s8nama9jdekqsc6pn8r5u7gc92&topic=178765.0
-//Added support for controlling via subscription to an MQTT command topic and the ability to optionally set the required master code
-//so you can still use the included remote to control the switches. 
-//To sniff your own master code run something like the RFSniff code example and trap the 47 bits between sync pulses and 
-//align with the code example eg. 0101 0101 1111 1011 0110 0011 1001 1001 1110 0001 1111 1111
-//The master code is contained in blocks 5,6,7 and 8
-//Change the master code by altering the "Code_Master" string in KambrookRCO1.cpp
+/* Arduino Controlled Kambrook Remote Power Switch by: Mike Thompson August 2013, based on the pioneering efforts of Nevoz
+posted here: http://forum.arduino.cc/index.php?PHPSESSID=s8nama9jdekqsc6pn8r5u7gc92&topic=178765.0
+Added support for controlling via subscription to an MQTT command topic and the ability to optionally set the required master code
+so you can still use the included remote to control the switches. 
+To sniff your own master code run something like the RFSniff code example and trap the 47 bits between sync pulses and 
+align with the code example eg. 0101 0101 1111 1011 0110 0011 1001 1001 1110 0001 1111 1111
+The master code is contained in blocks 5,6,7 and 8
+Change the master code by altering the "Code_Master" string in KambrookRCO1.cpp
+*/
 
 #include "Arduino.h"
 #include "KambrookRCO1.h"
