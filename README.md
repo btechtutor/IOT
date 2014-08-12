@@ -1,7 +1,7 @@
-M2M
+IOT
 ===
 
-This repository contains MQTT, node.js, arduino and other useful stuff for machine-to-machine sense and control systems. Additional components will be added over time.
+This repository contains MQTT, node.js, arduino and other useful stuff for the 'Internet of Things' sense and control systems. Additional components will be added over time.
 
 Kambrook Remote Control Power Switch v1.1
 -----------------------------------------
