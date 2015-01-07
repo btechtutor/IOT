@@ -48,10 +48,10 @@ void setup()
   int con=false;
   while(con==false)
   {
-    con=client.connect("ArduinoWinplus");
+    con=client.connect("ArduinoKambrook");
     delay(500);
   }
-  client.subscribe("Winplus/command"); //MQTT topic where commands published
+  client.subscribe("Kambrook/command"); //MQTT topic where commands published
 }
 
 void loop()
@@ -61,10 +61,10 @@ void loop()
     int con=false;
     while(con==false)
     {
-      con=client.connect("ArduinoWinplus");
+      con=client.connect("ArduinoKambrook");
       delay(500);
     }
-    client.subscribe("Winplus/command"); //resubscribe if connection reset
+    client.subscribe("Kambrook/command"); //resubscribe if connection reset
   }
 }
 
