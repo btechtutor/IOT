@@ -15,11 +15,14 @@ Change the master code by altering the "Code_Master" string in KambrookRCO1.cpp
 #include <PubSubClient.h>
 
 // Update these with values suitable for your network.
-byte mac[]    = {  0x30, 0x31, 0x32, 0x33, 0x34, 0x35 };
-byte ip[]     = { 192, 168, 2, 200 }; //Arduino IP
+byte mac[]    = { 0x30, 0x31, 0x32, 0x33, 0x34, 0x35 };
+byte ip[]     = { 192, 168, 2, 150 }; //Arduino IP
 byte gateway[] = { 192, 168, 2, 1 };
-byte subnet[]  = { 255, 255, 255, 0 };
+byte netmask[]  = { 255, 255, 255, 0 };
 byte server[] = { 192, 168, 2, 26 }; //MQTT Server
+
+EthernetClient ethClient;
+PubSubClient client(server, 1883, callback, ethClient);
 
 void callback(char* topic, byte* payload, unsigned int length) //get MQTT command
 {
@@ -32,24 +35,38 @@ void callback(char* topic, byte* payload, unsigned int length) //get MQTT comman
   
   // e.g. SendCode("A";"1";"ON");
   SendCode((char*)strGroup.c_str(),(char*)strDevice.c_str(),(char*)strCommand.c_str());
+  client.publish("Winplus/status",(uint8_t*)"command sent",strlen("command sent"),1);//track command to isolate issue
 }
 
-EthernetClient ethClient;
-PubSubClient client(server, 1883, callback, ethClient);
+unsigned long timesent=0;
+unsigned long time=0;
 
 void setup()
 {
   delay(600); // allow some time after powerup and sketch start, for the Wiznet W5100 Reset IC to release and come out of reset. 
-  Ethernet.begin(mac, ip);
-  if (client.connect("ArduinoKambrook"))
+  Ethernet.begin(mac, ip, gateway, netmask);
+
+  int con=false;
+  while(con==false)
   {
-    client.subscribe("Kambrook/command"); //MQTT topic where commands published
+    con=client.connect("ArduinoWinplus");
+    delay(500);
   }
+  client.subscribe("Winplus/command"); //MQTT topic where commands published
 }
 
 void loop()
 {
-  client.loop();
+  if(client.loop()==false) //if connection lost
+  { 
+    int con=false;
+    while(con==false)
+    {
+      con=client.connect("ArduinoWinplus");
+      delay(500);
+    }
+    client.subscribe("Winplus/command"); //resubscribe if connection reset
+  }
 }
 
 String getValue(String data, char separator, int index)
@@ -65,6 +82,5 @@ String getValue(String data, char separator, int index)
         strIndex[1] = (i == maxIndex) ? i+1 : i;
     }
   }
-
   return found>index ? data.substring(strIndex[0], strIndex[1]) : "";
 }
