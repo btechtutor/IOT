@@ -35,7 +35,6 @@ void callback(char* topic, byte* payload, unsigned int length) //get MQTT comman
   
   // e.g. SendCode("A";"1";"ON");
   SendCode((char*)strGroup.c_str(),(char*)strDevice.c_str(),(char*)strCommand.c_str());
-  client.publish("Winplus/status",(uint8_t*)"command sent",strlen("command sent"),1);//track command to isolate issue
 }
 
 unsigned long timesent=0;
