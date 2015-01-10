@@ -37,9 +37,6 @@ void callback(char* topic, byte* payload, unsigned int length) //get MQTT comman
   SendCode((char*)strGroup.c_str(),(char*)strDevice.c_str(),(char*)strCommand.c_str());
 }
 
-unsigned long timesent=0;
-unsigned long time=0;
-
 void setup()
 {
   delay(600); // allow some time after powerup and sketch start, for the Wiznet W5100 Reset IC to release and come out of reset. 
