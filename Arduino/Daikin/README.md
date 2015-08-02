@@ -1,5 +1,5 @@
 Network Enabling the Daikin BRC1D52 Thermostat
-
+==============================================
 Wouldn’t it be nice if your airconditioner could be switched on or off remotely, make intelligent decisions and be made to follow your own custom rules? Why not automatically switch off when you leave the house? If the house is at 17 degrees and you are heating it to 19 degrees, but the temperature outside is 20 degrees, why not just open the windows and turn off the air conditioner? 
 
 There are some smarter thermostats now available such as NEST, but they don’t necessarily give you the control customisation you require, cost too much or are simply not compatible with your air conditioner.
@@ -8,7 +8,6 @@ Unfortunately my Daikin VRV system uses a proprietary 2 way protocol and electri
 The Goal
 
 The goal was really quite simple:
-
 Preserve existing thermostat controller capabilities.
 Add network connectivity.
 Switch the air conditioner on or off based on commands received over the network.
@@ -22,20 +21,16 @@ Hacking the protocol was going to be complex given its closed nature and 2 way s
 
 The picture below shows the on/off switch and the status led. The aim was to trigger the button with a relay and measure the voltage across the led to detect on/off status without affecting the basic operation of the controller.
 
-
 Modifying the Controller
-
+------------------------
 The casing is easily removed with a small flat end screwdriver at the points marked. The circuit board can then be carefully lifted out after removing all the anchoring screws.You should switch the air conditioner off at the mains before proceeding. I also suggest labelling the main connecting wires before detaching from the circuit board.
-
-
-
 
 After removing the main circuit board, solder the four connecting wires in the locations shown. The black and red wires are soldered to the on/off button pins and the green and yellow wires are soldered to the cathode and anode pins of the on/off LED.
 
 Route the cable along the available channel (no modification required) in the casing, replace the circuit board and pass the cable back through the wall cavity.
 
 Controlling via an Arduino
-
+--------------------------
 The Arduino is ideal for this task with the addition of a basic relay and network capabilities. The key tasks required are:
 
 Toggle a relay to emulate the on/off button
@@ -48,8 +43,6 @@ A basic relay shield and ethernet or wifi shield are all that is needed. I was l
 Wiring
 
 After running the cable back through the wall cavity, I connected it to the arduino on an adjacent wall as shown below. Note: the ethernet shield is stacked on the arduino directly below the pebble shield shown.
-
-
 
 The black and red button wires are connected directly to the relay terminals on pin 6 (polarity is not important).  When the relay is tripped (closed) for 500ms, a button press action is generated.
 
