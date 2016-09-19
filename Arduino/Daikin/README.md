@@ -1,5 +1,7 @@
 Network Enabling the Daikin BRC1D52 Thermostat
 ==============================================
+Ref. http://mattala.com.au/mike/2016/08/14/airduino-network-enabling-the-daikin-vrv-with-the-brc1d61-or-similar-thermostats/
+
 Wouldn’t it be nice if your airconditioner could be switched on or off remotely, make intelligent decisions and be made to follow your own custom rules? Why not automatically switch off when you leave the house? If the house is at 17 degrees and you are heating it to 19 degrees, but the temperature outside is 20 degrees, why not just open the windows and turn off the air conditioner? 
 
 There are some smarter thermostats now available such as NEST, but they don’t necessarily give you the control customisation you require, cost too much or are simply not compatible with your air conditioner.
