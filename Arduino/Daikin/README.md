@@ -1,4 +1,4 @@
-Network Enabling the Daikin BRC1D52 Thermostat
+Network Enabling the Daikin BRC1D61 Thermostat
 ==============================================
 Ref. http://mattala.com.au/mike/2016/08/14/airduino-network-enabling-the-daikin-vrv-with-the-brc1d61-or-similar-thermostats/
 
